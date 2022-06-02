@@ -31,11 +31,12 @@ public:
     Harmonics() : n_{}, harmonics_{} {harmonics_.reserve(14);}
     Harmonics(const std::vector<harmonic> &h);
 
-    bool isHarmonic(int number);
+    bool isHarmonic(int number); //return true if number is an harmonic
+    double valueHarmonic(int number); //return the value of the harmonci number
 
-    bool addHarmonic(int number, double value);
-    bool updateHarmonic(int number, double value);
-    //bool removeHarmonic(int number);
+    bool addHarmonic(int number, double value); //create a nex harmonic number
+    bool updateHarmonic(int number, double value);  //update the value of the harmonic number
+    bool removeHarmonic(int number); //remove the harmonic number
 
     
     int n() {return n_;}

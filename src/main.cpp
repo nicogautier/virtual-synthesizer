@@ -1,4 +1,7 @@
 #include "harmonics.hpp"
+#include "musicNotes.hpp"
+
+
 #include <iostream>
 #include <vector>
 
@@ -22,6 +25,8 @@ void testHarmonics(){
   }
 
   std::cout << "\nharmonic 5: " << h1.valueHarmonic(5) << " harmonic 25: " << h1.valueHarmonic(25)<<"\n";
+
+  std::cout << "\nLA3: " << NOTES[OCTAVE_3][LA] << " Hz\n";
 
 }
 

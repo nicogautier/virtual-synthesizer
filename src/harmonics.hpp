@@ -31,8 +31,10 @@ public:
     Harmonics() : n_{}, harmonics_{} {harmonics_.reserve(14);}
     Harmonics(const std::vector<harmonic> &h);
 
-    //bool addHarmonic(int number, double value);
-    //bool updateHarmonic(int number, double value);
+    bool isHarmonic(int number);
+
+    bool addHarmonic(int number, double value);
+    bool updateHarmonic(int number, double value);
     //bool removeHarmonic(int number);
 
     

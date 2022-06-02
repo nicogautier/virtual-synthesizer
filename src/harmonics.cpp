@@ -1,26 +1,28 @@
 #include "harmonics.hpp"
 
-#include <assert.h>
+#include <vector>
 #include <stdexcept>
-
-Harmonics::Harmonics()
-:numberHarmonics{}, valueHarmonics{}, n{}
-{
-}
+#include <algorithm>
 
 
-Harmonics::Harmonics(const std::vector<int> &number, const std::vector<double> &value)
+
+
+Harmonics::Harmonics(const std::vector<harmonic> &h)
 :Harmonics{}
 {
-    if(number.size()!=value.size()){throw std::invalid_argument( "received different vector size" );}
-    
-    n = number.size();
 
-    for(int i=0; i<n ; i++){
-        if(number[i]<1 || value[i]<0 ){throw std::invalid_argument( "received negative value" );}
+    n_ =(int) h.size();
+
+    for(int i=0; i<n_ ; i++){
+        if(h[i].number<1){throw std::invalid_argument( "received invalid fundamental multiple value" );};
+        if(h[i].value<0 ){throw std::invalid_argument( "received negative value for harmonic" );}
     } 
 
-    numberHarmonics = number;
-    valueHarmonics = value;
+    harmonics_ = h;
+
+    //sort and remove duplicate harmonics
+    std::sort(harmonics_.begin(), harmonics_.end(),  [] (harmonic const& lhs, harmonic const& rhs) {return lhs.number < rhs.number;});
+    harmonics_.erase( unique( harmonics_.begin(), harmonics_.end(), [] (harmonic const& lhs, harmonic const& rhs) {return lhs.number == rhs.number;} ), harmonics_.end() );
+
 
 }

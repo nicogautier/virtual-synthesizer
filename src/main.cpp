@@ -2,6 +2,11 @@
 #include "musicNotes.hpp"
 
 
+#include <pulse/pulseaudio.h>
+#include <pulse/simple.h>
+
+
+
 #include <iostream>
 #include <vector>
 
@@ -35,6 +40,17 @@ int main()
 {
   
   testHarmonics();
+
+
+
+  pa_simple *s;
+  pa_sample_spec ss;
+
+  ss.format = PA_SAMPLE_S16NE;
+  ss.channels = 2; 
+  ss.rate=   44100;
+
+  s = pa_simple_new(NULL, "Synthesizer", PA_STREAM_PLAYBACK, NULL, "Music", &ss, NULL, NULL, NULL);
 
   return 0;
 }
